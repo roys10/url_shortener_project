@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from . import keygen, models, schemas, main
+from . import keygen, models, schemas, database
 
 def create_db_url(db: Session, url: schemas.URLBase) -> models.URL:
     key = keygen.create_unique_random_key(db)
@@ -16,7 +16,7 @@ def create_db_url(db: Session, url: schemas.URLBase) -> models.URL:
 def create_db_chosen_url(db: Session, url: schemas.URLchoice) -> models.URL:
     key = url.chosen_url
     if get_db_url_by_key(db=db, url_key=key):
-         main.raise_bad_request("URL already exists :(")
+         database.raise_bad_request("URL already exists :(")
     secret_key = f"{key}_{keygen.create_random_key(length=8)}"
     print(key)
     db_url = models.URL(

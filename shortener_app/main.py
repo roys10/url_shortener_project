@@ -26,7 +26,7 @@ def get_db():
 
 @app.get("/")
 def read_root():
-    return "Welcome to the URL shortener API :)"
+    return "Welcome to the URL shortener API :) SILONI"
 
 @app.post("/url", response_model=schemas.URLInfo)
 def create_url(url: schemas.URLBase, db: Session = Depends(get_db)):

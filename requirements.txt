@@ -1,0 +1,5 @@
+fastapi==0.104.1
+pydantic==1.10.13
+SQLAlchemy==1.4.32
+starlette==0.17.1
+validators==0.18.2

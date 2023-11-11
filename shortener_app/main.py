@@ -42,7 +42,6 @@ def create_chosen_url(url: schemas.URLchoice, db: Session = Depends(get_db)):
         raise_bad_request(message="Your provided URL is not valid")
 
     db_url = crud.create_db_chosen_url(db=db, url=url)
-    print(f"{db_url=}")
     if db_url: 
         return get_admin_info(db_url)
     else:

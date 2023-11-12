@@ -28,6 +28,12 @@ def get_db():
 def read_root():
     return "Welcome to the URL shortener API :) SILONI"
 
+@app.get("/all")
+def get_all_records(db: Session = Depends(get_db)):# -> list:
+    db_url = crud.get_db_url_by_key_2(db=db)
+    print(db_url)
+    return db_url
+
 @app.post("/url", response_model=schemas.URLInfo)
 def create_url(url: schemas.URLBase, db: Session = Depends(get_db)):
     if not validators.url(url.target_url):

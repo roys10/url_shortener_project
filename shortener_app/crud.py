@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 
 from . import keygen, models, schemas, errors
 
@@ -53,3 +54,12 @@ def deactivate_db_url_by_secret_key(db: Session, secret_key: str) -> models.URL:
         db.commit()
         db.refresh(db_url)
     return db_url
+
+def get_db_url_by_key_2(db: Session):
+    statement = select(models.URL.key, models.URL.target_url)
+    rows = db.execute(statement).all()
+
+    return (
+        rows
+    
+    )
